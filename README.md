@@ -1,5 +1,7 @@
 # backbone-crud-app
-This is a CRUD app using Backbone.js. I used local-storage of backbone.
+This is a CRUD app using Backbone.js.
+
+I used local-storage of backbone.
 ## Run
 You can run this project by index.html itself.
 ## BackboneJS
