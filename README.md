@@ -1,5 +1,5 @@
 # backbone-crud-app
-This is a CRUD app using Backbone.js.
+This is a simple CRUD(Create, Read, Update and Delete) app using Backbone.js.
 
 I used local-storage of backbone.
 ## Run
