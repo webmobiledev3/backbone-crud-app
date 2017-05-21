@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Example Backbone App</title>
+  <!-- load the bootstrap stylesheet -->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+
+    <nav class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="navbar-header">
+                        
+                        <div class="navbar-inverse">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                                                                        
+                        <a class="navbar-brand" href="/">HUMANS.IO</a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#" data-action="faqModal">FAQ</a></li>
+                            <li><a href="/sign-in">Sign In</a></li>
+                            <li><a href="/sign-up">Sign Up</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+  <div class="container">      
+    <div class="page-header"></div>
+    <div class="row well">
+      <div class="col-md-3">
+        <a class="btn btn-block btn-large btn-info" href="#note/new">Create New Note</a>
+        <div id="list-content"></div>
+      </div>
+      <div class="col-md-9" id="primary-content">
+      </div>
+    </div>
+  </div>
+
+  <!-- the form, used for create and edit -->
+  <script type="text/jst" id="formTemplate">
+      <div class="alert alert-danger fade in" style="display:none;"></div>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" name="title" value="<%= title %>" />
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" style="height:500px" name="description"><%= description %></textarea>
+        </div>
+        <button class="save btn btn-large btn-info" type="submit">Save</button>
+        <a class="btn btn-danger" href="#note/<%= id %>/delete">Delete</a>
+      </form>
+  </script>
+
+  <!-- the index container -->
+  <script type="text/template" id="indexTemplate">
+
+    <% if (_.isEmpty(notes)){ %>
+      <div class="alert alert-warning">
+        <p>There are currently no notes. Try creating some.</p>
+      </div>
+    <% } %>
+
+    <% _.each(notes, function (note) { %>
+      <ul style="list-style: none;padding: 0;margin: 0;">
+        <li><a class="btn" style="width: 100%;" href="#note/<%= note.id %>/edit"><%= note.title %></a></li>
+      </ul>
+    <% }); %>
+
+  </script>
+
+  <!-- load the libraries we need -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.6/zepto.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.16/backbone.localStorage-min.js"></script>
+  <!-- load our scripts -->
+  <script src="js/note_router.js"></script>
+  <script src="js/note_model.js"></script>
+  <script src="js/views/note_index.js"></script>
+  <script src="js/views/note_new.js"></script>
+  <script src="js/views/note_edit.js"></script>
+  <script src="js/helpers.js"></script>
+  <script>
+    var app = new APP.NoteRouter();
+  </script>
+</body>
+</html>
